@@ -4,7 +4,7 @@ in a list of sentences
 """
 
 
-class CountVectorizer():
+class CountVectorizer:
     """
     Class that counts the number of words in a list of sentences
     """
@@ -17,16 +17,19 @@ class CountVectorizer():
         self.vocab = {}
         self.vectors = []
 
-    def fit_transform(self, sentences: list) -> None:
+    def fit_transform(self, sentences: list) -> list:
         """
         Function that counts the number of words in a list of sentences
         :param sentences:
         :return: None
         """
+        self.vectors = []
+        self.vocab = {}
+
         index = 0
 
         for sentence in sentences:
-            for word in sentence.split():
+            for word in sentence.lower().split():
                 if word not in self.vocab:
                     self.vocab[word] = index
                     index += 1
@@ -34,18 +37,19 @@ class CountVectorizer():
         for sentence in sentences:
             vector = [0] * len(self.vocab)
 
-            for word in sentence.split():
-                if word in self.vocab:
-                    vector[self.vocab[word]] += 1
+            for word in sentence.lower().split():
+                vector[self.vocab[word]] += 1
 
             self.vectors.append(vector)
+
+        return self.vectors
 
     def get_feature_name(self) -> list:
         """
         Function that print the number of words in a list of sentences
         :return: List of lists with number of words for every sentence
         """
-        return self.vectors
+        return list(self.vocab.keys())
 
 
 if __name__ == '__main__':
