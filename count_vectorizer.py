@@ -44,7 +44,7 @@ class CountVectorizer:
 
         return self.vectors
 
-    def get_feature_name(self) -> list:
+    def get_feature_names(self) -> list:
         """
         Function that print the number of words in a list of sentences
         :return: List of lists with number of words for every sentence
@@ -54,11 +54,11 @@ class CountVectorizer:
 
 if __name__ == '__main__':
     cv = CountVectorizer()
-    bunch_of_boring_words = [
-        "Hi my name is Vanya",
-        "Hi my name is Nikola",
-        "Vanya and Nikola are a good team"
+    corpus = [
+        'Crock Pot Pasta Never boil pasta again',
+        'Pasta Pomodoro Fresh ingredients Parmesan to taste'
     ]
+    count_matrix = cv.fit_transform(corpus)
 
-    cv.fit_transform(bunch_of_boring_words)
-    print(cv.get_feature_name())
+    print(cv.get_feature_names())
+    print(count_matrix)
