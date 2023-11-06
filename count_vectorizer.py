@@ -11,7 +11,7 @@ class CountVectorizer:
 
     def __init__(self) -> None:
         """
-        Inits CountVectorizer class
+        Init CountVectorizer class
         :return: None
         """
         self.vocab = {}
@@ -20,8 +20,8 @@ class CountVectorizer:
     def fit_transform(self, sentences: list) -> list:
         """
         Function that counts the number of words in a list of sentences
-        :param sentences:
-        :return: None
+        :param sentences: Sentences of the corpus
+        :return: Vectors list with the count matrix
         """
         self.vectors = []
         self.vocab = {}
